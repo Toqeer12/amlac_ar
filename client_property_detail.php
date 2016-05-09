@@ -98,7 +98,7 @@ include 'raw_detail.php';
                                      
                                                 $varCL = $_GET['cid'];
                                                 $varowner = $_GET['owner'];
-                                                $viewpropertyDetail = viewproperty($varCL,$varowner);
+                                                $viewpropertyDetail = viewproperty($varowner,$varCL);
                                                 for ($i = 0; $i < count($viewpropertyDetail); $i++) {
 
 
@@ -118,11 +118,10 @@ include 'raw_detail.php';
                                                 </td>
                                                 <td>
                                                     <?php  
-                                                    $viewpropertytype = propertytype($viewpropertyDetail[$i]['property_type']);
-                                                for ($ii = 0; $ii < count($viewpropertytype); $ii++) { 
+                                                  echo  $viewpropertytype = propertytype($viewpropertyDetail[$i]['property_type']);
+                                               
                                                     
-                                                     echo $viewpropertytype[$ii]['prop_type'];  
-                                                }?>
+                                                 ?>
                                                 </td>
                                                 <td>
                                                    <?php echo $viewpropertyDetail[$i]['year_build']; ?>

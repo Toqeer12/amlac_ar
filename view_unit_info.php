@@ -85,62 +85,7 @@ include 'owner_header_menu.php';
  
                                     $varowner=$_SESSION['Id'];
                                     $varreal=$_SESSION['real_state'];
-                                ?>
-
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-shopping-cart green-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="<?php propertyowner($varowner,$varreal)?>" data-fgColor="#a8c77b" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number"><?php
-                                        
-                          
-                                     propertyowner($varowner,$varreal) ?></div>
-                                    <div class="title">Total Properties</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-comments-alt gray-color"></i>
-                                    </div>
-                                    <input class="knob"  data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="<?php unit_propertyowner($varowner,$varreal)?>"  data-fgColor="#b9baba" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number"><?php unit_propertyowner($varowner,$varreal)?></div>
-                                    <div class="title">Total Unit</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-eye-open purple-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="<?php lease_propertyowner($varowner,$varreal)?>" data-fgColor="#c8abdb" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number"><?php lease_propertyowner($varowner,$varreal)?></div>
-                                    <div class="title">Total Lease Property</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                   
+                        ?>
                     </div>
          <div class="container-fluid">
             <div class="row-fluid">
@@ -152,30 +97,26 @@ include 'owner_header_menu.php';
                                 <tr>
                                      <th>Sr No</th>
                                      <th>Property Name</th>
-                                     <th class="hidden-phone">Property Type</th>
-                                     <th class="hidden-phone">Land #</th>
-                                     <th class="hidden-phone">Instr #</th>
-                                     <th class="hidden-phone">Address</th>
-                                     <th class="hidden-phone">More Info</th>
+                                     <th class="hidden-phone">Unit #</th>
+                                     <th class="hidden-phone">Inst Amount</th>
+                                     <th class="hidden-phone">Annual Lease</th>
+                                     <th class="hidden-phone">Commision Amount</th>
+                                     <th class="hidden-phone">Status</th>
                                 </tr>
                             </thead>
                                    <tbody>
                                <?php
-                               $propertyUnit = viewproperty($varowner,$varreal);
+                               $propertyUnit = viewpropertyUnitowner($varowner,$varreal);
                                for ($i = 0; $i < count($propertyUnit); $i++) {
 
                                   ?>                                           
                                 <td><?php  echo $propertyUnit[$i]['id'];?></td>
-                                <td><?php  echo $propertyUnit[$i]['propty_name'];?></td>     
-                                <td><?php    
-                                  $viewpropertytype = propertytype($propertyUnit[$i]['property_type']);
-                                              
-                                                     echo $viewpropertytype;  
-                                                  ?></td>     
-                                <td><?php  echo $propertyUnit[$i]['land_no'];?></td>     
-                                <td><?php  echo $propertyUnit[$i]['inst_no'];?></td>   
-                                <td><?php  echo $propertyUnit[$i]['address'];?></td> 
-                              <td><a href="javascript:void(0);" data-cid="<?php echo $varreal?>" data-property="<?php echo $propertyUnit[$i]['id'] ?>" data-owner="<?php echo $varowner;?>" onclick="unitcall(this)">View Detail </a></td>
+                                <td><?php  echo $propertyUnit[$i]['property_name'];?></td>     
+                                <td><?php  echo $propertyUnit[$i]['block_no'];?></td>     
+                                <td><?php  echo $propertyUnit[$i]['ins_amount'];?></td>     
+                                <td><?php  echo $propertyUnit[$i]['annul_lease'];?></td>   
+                                <td><?php  echo $propertyUnit[$i]['comission_amount'];?></td>   
+                                <td><?php  echo $propertyUnit[$i]['status'];?></td> 
 
                                 </tbody>           
    <?php }?>

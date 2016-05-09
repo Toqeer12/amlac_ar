@@ -93,7 +93,7 @@ function unit_property()
 }
 function unit_propertyowner($var1,$var2)
 {
-        $sql= "SELECT Count(*) id From real_state_unit Where ";   
+        $sql= "SELECT Count(*) id From real_state_unit Where owner_id='$var1' And cid='$var2'";   
 		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 
 		if($result) 
@@ -123,7 +123,22 @@ function lease_property()
     
     
 }
+function lease_propertyowner($var1,$var2)
+{
+        $sql= "SELECT Count(*) id From rent_property Where owner='$var1' And cid='$var2'";   
+		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 
+		if($result) 
+        {
+			 if(mysql_num_rows($result) > 0)
+				 {
+                    $member  = mysql_fetch_assoc($result);
+                    echo $member['id'];
+                 }
+        }
+    
+    
+}
 function registered_user($var)
 {
         global $arry;
@@ -243,7 +258,7 @@ function sponsor($var)
     
     
 }
-function viewproperty($cid,$ownerid)
+function viewproperty($ownerid,$cid)
 {
     global $array5;
         $sql= "SELECT * From add_property Where owner_id='$ownerid' AND cid='$cid'";   
@@ -281,7 +296,7 @@ function propertytype($id)
                     {
                         
                     
-                            $array6[]=$member;
+                            $array6 =$member['prop_type'];
                     }
                  }
         }
@@ -309,7 +324,27 @@ function viewpropertyUnit($cid,$propid)
         return $array7;
     
 }
+function viewpropertyUnitowner($owner,$cid)
+{
+    global $array7;
+        $sql= "SELECT * From real_state_unit Where  owner_id='$owner' And cid='$cid'";   
+		$result=mysql_query($sql)or  die('Invalid query: ' . mysql_error());
 
+		if($result) 
+        {
+		 if(mysql_num_rows($result) > 0)
+                {
+                        while($member  = mysql_fetch_assoc($result))
+                        {
+                        
+                    
+                            $array7[]=$member;
+                        }
+                 }
+        }
+        return $array7;
+    
+}
 function getpaymentstatus($var)
 {
     global $arr;
@@ -415,4 +450,6 @@ function admin_notification3($var)
         }
         return $array9; 
 }
+
+ 
 ?>
